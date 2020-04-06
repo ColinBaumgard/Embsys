@@ -96,6 +96,14 @@ $ n
 **Question 4** : Que se passe-t-il quand vous lancez GDB en mode interactif sur
                  le binaire *gps*?
 
+```` bash
+linux-vdso.so.1 (0x00007ffd01bf0000)
+libptmx.so => not found
+libnmea.so => not found
+libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f8a5feb9000)
+/lib64/ld-linux-x86-64.so.2 (0x00007f8a604ad000)
+````
+
 Suite au problème repéré, allez dans le répertoire *gps/bin* et lancez la
 commande suivante :
 
@@ -106,13 +114,37 @@ ldd ./gps
 **Question 5** : À quoi sert la commande *ldd*? Quelle information
                 supplémentaire cela vous apporte-t-il?
 
+```` txt
+ldd - Affiche les bibliothèques partagées nécessaires  
+````
+
 **Question 6** : Comment résoudre ce problème en tant qu'utilisateur? N'hésitez
                  pas à regarder le fichier *gps/run.sh*.
 
+on lance la commande :
+```` bash
+export LD_LIBRARY_PATH=LD_LIBRARY_PATH=$(pwd)/lib
+````
+
 Relancez *ldd* puis GDB pour vérifier que votre solution a porté ses fruits.
+
+on obtient :
+```` bash
+linux-vdso.so.1 (0x00007fff6497e000)
+libptmx.so => /home/colin/Documents/ENSTA/Embsys/Embsys/labs/sysprog/gps/lib/libptmx.so (0x00007f05b6812000)
+libnmea.so => /home/colin/Documents/ENSTA/Embsys/Embsys/labs/sysprog/gps/lib/libnmea.so (0x00007f05b660f000)
+libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f05b621e000)
+libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f05b5e80000)
+/lib64/ld-linux-x86-64.so.2 (0x00007f05b6c17000)
+````
+
 
 **Question 7** : Quelle est la différence entre les commandes *s* et *n* dans
                  le prompt gdb suite à un breakpoint?
+
+```` txt
+Avec "step" on rentre dans les sous-fonctions, avec "next" on parcourt l'arbre d'appel sans rentrer en profondeur.
+````
 
 Il existe aussi une version de GDB pour déboguer à distance. Il y
 a alors un GDBServer tournant sur la cible où le programme à déboguer est
