@@ -115,8 +115,9 @@ une bibliothèque ou librairie[1] logicielle (ou encore, bibliothèque de progra
                 correspondante pour obtenir un binaire exécutable (un hello
                 world par exemple).
 
-		Fichier main.c :
-    ````c 
+Fichier main.c :
+
+````c 
 int main(int argc, char const *argv[])
 {
   printf("Hello World\n");
@@ -124,41 +125,43 @@ int main(int argc, char const *argv[])
 
 }
 ````
-  Compilation :
-  ````sh 
-  gcc -Wall main.c -o output
-  ````
+
+Compilation :
+
+````sh 
+gcc -Wall main.c -o output
+````
 
 **Question 5**: Donnez un exemple de fichier C et les lignes de commandes
                 correspondantes pour obtenir une librairie partagée.
 
-    Fichier lib.c : 
-    ````c
-    #include <stdio.h>
+Fichier lib.c : 
+````c
+#include <stdio.h>
 
-    void fonction(void)
-    {
-      puts("fonction 1\n");
-    }
-    ````
+void fonction(void)
+{
+puts("fonction 1\n");
+}
+````
 
-    Fichier lib.h : 
-    ````c
-    #ifndef lib_h__
-    #define lib_h__
+Fichier lib.h : 
+````c
+#ifndef lib_h__
+#define lib_h__
 
-    extern void fonction(void);
+extern void fonction(void);
 
-    #endif
+#endif
 
-    ````
+````
 
-    Complilation : 
+Complilation : 
 
-    ````sh
-    gcc -c Wall -fpic lib.c
-    gcc -shared -o mylib.so lib.o
-    ````
+````sh
+gcc -c Wall -fpic lib.c
+gcc -shared -o mylib.so lib.o
+````
 
 
 ## À retenir
