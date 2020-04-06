@@ -113,7 +113,7 @@ Il est possible de rechercher une chaine de caractère avec la commande */*
                 paquet *openssh* sera compilé et disponible dans l'OS cible. De
                 même, retrouver cette information en analysant le fichier de
                 configuration *embsys_defconfig*.
-```` txt
+````txt
 on a BR2_PACKAGE_OPENSSH [=y], qui devrait donc être compilé
 même constat sur embsys_defconfig
 ````
@@ -125,7 +125,7 @@ même constat sur embsys_defconfig
 ````txt
 Outil de base, avec les commandes standards
 make busybox-menuconfig -> Compilation, et affichage du menu
-```
+````
 
 Par défaut, le bootloader de la RPI3 est utilisé. D'ailleurs, vous pouvez
 constater en allant dans le menu *Bootloaders* de l'interface de
